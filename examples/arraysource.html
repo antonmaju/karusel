@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Karusel Examples</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<link rel="stylesheet" href="stylesheets/karusel.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js" ></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	<script src="../karusel.js"></script>
+</head>
+<body>
+	
+	<div data-role="page" id="arrayPage">
+		<div data-role="header" >
+			<h1>Dom Source</h1>
+		</div>
+		<div data-role="content">
+			<div id="carousel" ></div>
+	
+			<fieldset data-role="controlgroup">
+				<legend>Choose loop mode:</legend>
+				<input type="radio" id="radActive" name="active-choice"  value="true"  />
+				<label for="radActive">Active</label>
+				<input type="radio" id="radInactive" name="active-choice"  value="false" checked="checked"  />
+				<label for="radInactive">Inactive</label>
+			</fieldset>
+			<script type="text/javascript">
+			
+				$(document).on('pageinit','#arrayPage', function(evt){
+					
+					var source = [{
+						img:'images/latte.jpg',
+						title: 'Caffe Latte'
+					}, {
+						img: 'images/fish.jpg',
+						title: 'Seafood'
+					}, {
+						img:'images/irish.jpg',
+						title: 'Irish Coffee'
+					}, {
+						img:'images/onion_ring.jpg',
+						title: 'Onion Ring'
+					}];
+					
+					var store = new $.Karusel.ArraySource(source);
+
+					store.render = function (widget, data, $item) {
+						var html = '<img src="'+data.img+'" alt="'+ data.title+'"/>'+
+							'<div class="title">'+data.title+'</div>';
+						$item.html(html);
+					};
+					
+					$('#carousel').karusel({
+						source: store
+					});		
+
+					$('#radActive, #radInactive').change(function(evt){
+						$('#carousel')
+							.karusel('option','loop',$(this).val()=='true')
+							.karusel('refresh');
+					});
+				});
+			</script>
+	
+		</div>
+	</div>
+	
+	
+
+</body>
