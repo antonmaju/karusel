@@ -1,7 +1,10 @@
 Karusel
 =======
 
-Karusel is a simple carousel plugin for jQuery Mobile. 
+Karusel is a simple carousel plugin for jQuery Mobile.  
+
+You can visit the demo page at http://antonmaju.github.com/karusel 
+
 
 ## How to Use  
   
@@ -16,7 +19,7 @@ Alternatively, you can use data-role attribute
 ## Options  
 The available options are:  
 
-* source 
+* source   
 This option provides karusel a way to pull and render the data. 
 
 * loop  
